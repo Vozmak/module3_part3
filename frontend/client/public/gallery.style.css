@@ -2,3 +2,18 @@ img {
     height: 300px;
     margin: 10px;
 }
+
+form {
+    text-align: start;
+    display: inline-block;
+    width: 300px;
+}
+
+body {
+    color: rgba(255, 255, 255, 0.83);
+    background-color: #363636;
+}
+
+.page {
+    text-align: center;
+}

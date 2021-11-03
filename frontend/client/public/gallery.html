@@ -8,15 +8,28 @@
 <body>
 <main class="gallery">
   <div class="page">
-    <button id="previous">Предыдущая страница</button>
-    <button id="next">Следующая страница</button>
+    <button id="previous">Back</button>
+    <button id="next">Next</button>
     <p>Страница из </p>
     <form class="sendImg" method="post">
-      <input id="addImg" type="file" name="photo" accept="image/*" title="Загрузить картинку"><br>
-      <input type="submit" value="Загрузить">
+      <fieldset>
+        <legend>Upload my image</legend>
+        <input id="addImg" type="file" name="photo" accept="image/*" title="Загрузить картинку"><br>
+        <input type="submit" value="Загрузить">
+      </fieldset>
+    </form>
+    <form class="findImage" method="post">
+      <fieldset>
+        <legend>Find images by keyword (unsplash.com)</legend>
+        <input id="keyword" type="text" name="findImg" value="" placeholder="Keyword"><br>
+        <input type="submit" value="Загрузить">
+      </fieldset>
     </form>
   </div>
   <br>
+  <div class="galleryImages">
+    <h2>My Gallery</h2>
+  </div>
 </main>
 <script type="module" src="../../build/src/gallery/displayGallery/listGallery.js"></script>
 <script type="module" src="../../build/src/gallery/displayGallery/addImage.js"></script>

@@ -34,7 +34,7 @@ form.addEventListener("submit", async event => {
 
   if (!localStorage.token) {
     localStorage.setItem("token", token);
-    localStorage.setItem("timestamp", `${Date.now() + 6e5}`);
+    localStorage.setItem("timestamp", `${Date.now() + 6e10/*6e5*/}`);
 
     window.location.href = `gallery.html?page=${localStorage.page || 1}`;
   }

@@ -19,6 +19,7 @@ const envs: Record<string, string | undefined> = {
   SALTROUNDS: process.env.SALTROUNDS,
   ACCESSKEYID: process.env.ACCESSKEYID,
   SECRETACCESSKEY: process.env.SECRETACCESSKEY,
+  UNSPLASH_CLIENT_ID: process.env.UNSPLASH_CLIENT_ID,
 };
 
 export type Stage = 'local' | 'dev' | 'test' | 'prod';

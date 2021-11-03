@@ -38,7 +38,7 @@ next.onclick = function() {
 };
 
 async function displayImgList(): Promise<void> {
-  const gallery = document.querySelector(".gallery") as HTMLBodyElement
+  const gallery = document.querySelector(".galleryImages") as HTMLBodyElement
 
   const searchParams = new URL(window.location.href).searchParams;
   const page: number | string = getPage();
