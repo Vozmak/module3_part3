@@ -1,4 +1,6 @@
+import { ObjectType } from '@interfaces/api-gateway-lambda.interface';
 import { UnsplashCurlService } from '@services/unsplash-curl.service';
+import { ImagesList } from './unsplash.interface';
 import { UnsplashService } from './unsplash.service';
 
 export class UnsplashManager {
@@ -8,7 +10,7 @@ export class UnsplashManager {
     this.service = new UnsplashService();
   }
 
-  getImagesList(keyword: string, unsplashCurlService: UnsplashCurlService) {
-    return this.service.getImagesList(keyword, unsplashCurlService)
+  getImagesList(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
+    return this.service.getImagesList(query, unsplashCurlService);
   }
 }

@@ -1,5 +1,8 @@
 img {
     height: 300px;
+}
+
+#img {
     margin: 10px;
 }
 
@@ -16,4 +19,31 @@ body {
 
 .page {
     text-align: center;
+}
+
+.galleryImages .Images * {
+    padding: 0;
+    margin: 0;
+}
+
+.Images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.Images .img {
+    margin: 10px;
+}
+
+.ImageInfo {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#total_pages {
+    padding: 0;
+    margin: 0;
 }

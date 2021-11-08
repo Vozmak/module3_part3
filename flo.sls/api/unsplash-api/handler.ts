@@ -3,15 +3,16 @@ import { Handler } from 'aws-lambda/handler';
 import { log } from '@helper/logger';
 import { errorHandler } from '@helper/rest-api/error-handler';
 import { APIGatewayLambdaEvent } from '@interfaces/api-gateway-lambda.interface';
+import { ImagesList } from './unsplash.interface';
 import { UnsplashManager } from './unsplash.manager';
 
-export const getImagesUnsplash: Handler<APIGatewayLambdaEvent<null>, any> = async (event) => {
+export const getImagesUnsplash: Handler<APIGatewayLambdaEvent<null>, ImagesList> = async (event) => {
   log(event);
 
   try {
     const manager = new UnsplashManager();
 
-    const { query } = event.query;
+    const query = event.query;
 
     const unsplashCurlService = new UnsplashCurlService();
 
