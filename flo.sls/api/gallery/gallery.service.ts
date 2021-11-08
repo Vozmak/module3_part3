@@ -135,9 +135,8 @@ export class GalleryService {
     // let paramsAll: UpdateItemCommandInput | undefined;
 
     try {
-      console.log(1);
       const imgHash = crypto.createHash('sha1').update(imageName).digest('hex');
-      console.log(imgHash);
+
       if (exists) {
         const paramsUser: UpdateItemCommandInput = {
           TableName: getEnv('USERS_TABLE_NAME'),

@@ -3,6 +3,7 @@ import { BucketConfig } from './config/serverless/buckets/image.bucket';
 import { galleryConfig } from './config/serverless/parts/gallery/gallery';
 import { authConfig } from './config/serverless/parts/auth/gallery-auth';
 import { TableConfig } from './config/serverless/tables/users.table';
+import { UnsplashApiConfig } from './config/serverless/parts/unsplash-api/unsplash-api';
 import { joinParts } from './config/serverless/utils';
 
 const masterConfig: AWS = {
@@ -117,4 +118,4 @@ const masterConfig: AWS = {
   ],
 };
 
-module.exports = joinParts(masterConfig, [galleryConfig, authConfig, TableConfig, BucketConfig]);
+module.exports = joinParts(masterConfig, [galleryConfig, authConfig, TableConfig, BucketConfig, UnsplashApiConfig]);
