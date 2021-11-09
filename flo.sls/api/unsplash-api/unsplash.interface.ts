@@ -6,3 +6,12 @@ export interface ImagesList {
     url: string;
   }>;
 }
+
+export interface ImageItem {
+  url: string;
+  id: string;
+}
+
+export interface UploadBodyImages {
+  urls: Array<ImageItem>;
+}

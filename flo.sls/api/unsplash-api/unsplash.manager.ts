@@ -1,6 +1,8 @@
+import { HttpBadRequestError } from '@errors/http';
+import { HttpError } from '@errors/http/http-error';
 import { ObjectType } from '@interfaces/api-gateway-lambda.interface';
 import { UnsplashCurlService } from '@services/unsplash-curl.service';
-import { ImagesList } from './unsplash.interface';
+import { ImageItem, ImagesList } from './unsplash.interface';
 import { UnsplashService } from './unsplash.service';
 
 export class UnsplashManager {
@@ -12,5 +14,21 @@ export class UnsplashManager {
 
   getImagesList(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
     return this.service.getImagesList(query, unsplashCurlService);
+  }
+
+  uploadUnsplashImages(
+    urlsList: Array<ImageItem>,
+    email: string,
+    unsplashCurlService: UnsplashCurlService
+  ): Promise<string> {
+    if (!urlsList || urlsList.length === 0) {
+      throw new HttpError(404, 'Not found', 'Not found images for upload');
+    }
+
+    if (!email) {
+      throw new HttpBadRequestError('Email is required');
+    }
+
+    return this.service.uploadUnsplashImages(urlsList, email, unsplashCurlService);
   }
 }

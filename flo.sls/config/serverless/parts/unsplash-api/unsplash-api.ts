@@ -34,6 +34,30 @@ export const UnsplashApiConfig: AWSPartitial = {
         },
       ],
     },
+    uploadUnsplashImages: {
+      handler: 'api/unsplash-api/handler.uploadUnsplashImages',
+      memorySize: 128,
+      events: [
+        {
+          http: {
+            path: '/gallery/unsplash',
+            method: 'post',
+            integration: 'lambda',
+            cors: true,
+            response: {
+              headers: {
+                'Access-Control-Allow-Origin': "'*'",
+                'Content-Type': "'application/json'",
+              },
+              template: "$input.json('$')",
+            },
+            authorizer: {
+              name: 'GalleryAuthorizerRestApi',
+            },
+          },
+        },
+      ],
+    },
     GalleryAuthorizerRestApi: {
       handler: 'api/auth/handler.authentication',
       memorySize: 128,
