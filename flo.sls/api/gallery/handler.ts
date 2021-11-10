@@ -1,4 +1,3 @@
-import { S3Handler } from 'aws-lambda';
 import { Handler } from 'aws-lambda/handler';
 import { Gallery, Image, Query } from './gallery.interface';
 import { log } from '@helper/logger';
@@ -31,20 +30,6 @@ export const getPreSignedUrl: Handler<APIGatewayLambdaEvent<Image>, string> = as
     const userUploadEmail: string = event.enhancedAuthContext.context;
 
     return await manager.getPreSignedPutUrl(imageName, userUploadEmail);
-  } catch (error) {
-    return errorHandler(error);
-  }
-};
-
-export const saveImgToDB: S3Handler = async (event) => {
-  log(event);
-
-  try {
-    const manager = new GalleryManager();
-
-    const uploadInfo = event.Records[0];
-
-    return await manager.saveImgToDB(uploadInfo);
   } catch (error) {
     return errorHandler(error);
   }
