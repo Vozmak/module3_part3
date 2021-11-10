@@ -1,3 +1,5 @@
+import { lambdaUrl } from '../../../env.js';
+
 const idsForm = <HTMLFormElement>document.querySelector('.postImage');
 const imagesIDs = <HTMLTextAreaElement>document.querySelector('#imagesIDs');
 
@@ -12,7 +14,7 @@ idsForm.addEventListener('submit', async (event) => {
     }
   })
 
-  const unsplashResponse = await fetch(`http://localhost:3000/local/gallery/unsplash`, {
+  const unsplashResponse = await fetch(`${lambdaUrl}/gallery/unsplash`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${localStorage.token}`,

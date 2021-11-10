@@ -75,7 +75,7 @@ export class UnsplashCurlService {
               S: imgName,
             },
             Status: {
-              S: 'CLOSED',
+              S: 'OPEN',
             },
             Metadata: {
               S: JSON.stringify({

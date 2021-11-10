@@ -1,1 +1,1 @@
-export const lambdaUrl = 'https://s5iavgfyk3.execute-api.us-east-1.amazonaws.com/dev/'
+export const lambdaUrl = 'https://c9zomb8r4e.execute-api.us-east-1.amazonaws.com/dev'

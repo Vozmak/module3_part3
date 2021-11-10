@@ -1,4 +1,4 @@
-import { lambdaUrl } from '../../../env';
+import { lambdaUrl } from '../../../env.js';
 
 const imagesGallery = <HTMLBodyElement>document.querySelector('.Images');
 const unsplashApiForm = <HTMLFormElement>document.querySelector('.findImage');
@@ -12,7 +12,7 @@ unsplashApiForm.addEventListener('submit', async (event) => {
 
   imagesGallery.innerHTML = '';
 
-  const unsplashResponse = await fetch(`http://localhost:3000/local/gallery/unsplash?keyword=${keywordElement.value}&page=${pageElement.value}`, {
+  const unsplashResponse = await fetch(`${lambdaUrl}/gallery/unsplash?keyword=${keywordElement.value}&page=${pageElement.value}`, {
     headers: {
       Authorization: `Bearer ${localStorage.token}`,
     },
