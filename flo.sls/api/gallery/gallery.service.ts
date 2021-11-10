@@ -83,8 +83,6 @@ export class GalleryService {
     const imgGetURL: string = S3.getPreSignedGetUrl(key, getEnv('IMAGES_BUCKET_NAME')).split('?', 1)[0];
     const { ContentLength, ContentType } = metadata;
 
-    console.log(userEmail, imageName, imgGetURL);
-
     const params: QueryCommandInput = {
       TableName: getEnv('USERS_TABLE_NAME'),
       ExpressionAttributeNames: {
@@ -143,6 +141,7 @@ export class GalleryService {
           ExpressionAttributeNames: {
             '#S': 'Status',
             '#M': 'Metadata',
+            '#SC': 'subclipCreated',
           },
           ExpressionAttributeValues: {
             ':status': {
@@ -150,6 +149,9 @@ export class GalleryService {
             },
             ':metadata': {
               S: values.Metadata || JSON.stringify({ message: 'Metadata not found' }),
+            },
+            ':sccreated': {
+              BOOL: false,
             },
           },
           Key: {
@@ -160,7 +162,7 @@ export class GalleryService {
               S: `Image_${imgHash}`,
             },
           },
-          UpdateExpression: `SET #S = :status, #M = :metadata`,
+          UpdateExpression: `SET #S = :status, #M = :metadata, #SC = :sccreated`,
         };
         const updateCommand = new UpdateItemCommand(paramsUser);
         await DynamoClient.send(updateCommand);
