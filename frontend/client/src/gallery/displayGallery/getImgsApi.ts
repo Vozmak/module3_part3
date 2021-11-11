@@ -10,8 +10,6 @@ const textAreaElement = <HTMLTextAreaElement>document.querySelector('#imagesIDs'
 unsplashApiForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  imagesGallery.innerHTML = '';
-
   const unsplashResponse = await fetch(`${lambdaUrl}/gallery/unsplash?keyword=${keywordElement.value}&page=${pageElement.value}`, {
     headers: {
       Authorization: `Bearer ${localStorage.token}`,
@@ -19,11 +17,13 @@ unsplashApiForm.addEventListener('submit', async (event) => {
   });
 
   if (unsplashResponse.status !== 200) {
-    return alert(unsplashResponse.statusText);
+    const error = await unsplashResponse.json();
+    return alert(error.errorMessage);
   }
 
   const imagesList = await unsplashResponse.json();
 
+  imagesGallery.innerHTML = '';
   totalPages.textContent = `Total Pages: ${imagesList.total_pages}`;
 
   for (const image of imagesList.result) {

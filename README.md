@@ -1,11 +1,12 @@
-# Module 3 Part 2: AWS
+# Module 3 Part 3: AWS
 
 ___
 
 ## Цель проекта
 
-- Извучить serverless архитектуру с использованием AWS and Serverless Framework
+- Изучить serverless архитектуру с использованием AWS and Serverless Framework
 - Научиться работать с облаком DynamoDB и S3 Bucket
+- Изучить API проекта и сделать собственную реализацию интеграции с этим API
 
 ___
 

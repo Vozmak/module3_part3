@@ -16,7 +16,7 @@ export const getImagesUnsplash: Handler<APIGatewayLambdaEvent<null>, ImagesList>
 
     const unsplashCurlService = new UnsplashCurlService();
 
-    return await manager.getImagesList(query, unsplashCurlService);
+    return await manager.getImagesUnsplash(query, unsplashCurlService);
   } catch (error) {
     return errorHandler(error);
   }

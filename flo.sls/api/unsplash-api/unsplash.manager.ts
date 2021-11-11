@@ -12,8 +12,16 @@ export class UnsplashManager {
     this.service = new UnsplashService();
   }
 
-  getImagesList(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
-    return this.service.getImagesList(query, unsplashCurlService);
+  getImagesUnsplash(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
+    if (!query.keyword) {
+      throw new HttpBadRequestError('Keyword is required');
+    }
+
+    if (!query.page) {
+      throw new HttpBadRequestError('Page is required');
+    }
+
+    return this.service.getImagesUnsplash(query, unsplashCurlService);
   }
 
   uploadUnsplashImages(

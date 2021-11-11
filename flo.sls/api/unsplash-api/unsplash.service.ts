@@ -4,7 +4,7 @@ import { UnsplashCurlService } from '@services/unsplash-curl.service';
 import { ImageItem, ImagesList } from './unsplash.interface';
 
 export class UnsplashService {
-  async getImagesList(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
+  async getImagesUnsplash(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
     let imagesList: ImagesList;
     try {
       const { keyword, page } = query;
