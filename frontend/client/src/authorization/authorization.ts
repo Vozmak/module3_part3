@@ -41,7 +41,7 @@ form.addEventListener("submit", async event => {
 });
 
 async function authorizationUser(user: User): Promise<ErrorMsg | Token>  {
-  let response: Response = await fetch(`${lambdaUrl}login`, {
+  let response: Response = await fetch(`${lambdaUrl}/login`, {
     method: "POST",
     headers: {
       "Content-type": "application/json"

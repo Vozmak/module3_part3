@@ -54,24 +54,6 @@ export const galleryConfig: AWSPartitial = {
         },
       ],
     },
-    saveImgToDB: {
-      handler: 'api/gallery/handler.saveImgToDB',
-      memorySize: 128,
-      events: [
-        {
-          s3: {
-            bucket: '${file(env.yml):${self:provider.stage}.IMAGES_BUCKET_NAME}',
-            event: 's3:ObjectCreated:*',
-            // rules: [
-            //   {
-            //     prefix: 'strela996@bk.ru/',
-            //   },
-            // ],
-            existing: true,
-          },
-        },
-      ],
-    },
     GalleryAuthorizerRestApi: {
       handler: 'api/auth/handler.authentication',
       memorySize: 128,

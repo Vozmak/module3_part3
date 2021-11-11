@@ -1,7 +1,7 @@
 import { HttpInternalServerError } from '@errors/http';
 import { ObjectType } from '@interfaces/api-gateway-lambda.interface';
 import { UnsplashCurlService } from '@services/unsplash-curl.service';
-import { ImagesList } from './unsplash.interface';
+import { ImageItem, ImagesList } from './unsplash.interface';
 
 export class UnsplashService {
   async getImagesList(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
@@ -22,5 +22,25 @@ export class UnsplashService {
     }
 
     return imagesList;
+  }
+
+  async uploadUnsplashImages(
+    urlsList: Array<ImageItem>,
+    email: string,
+    unsplashCurlService: UnsplashCurlService
+  ): Promise<string> {
+    let response: string;
+
+    try {
+      response = await unsplashCurlService.postImages(email, urlsList);
+    } catch (e) {
+      throw new HttpInternalServerError(e.message);
+    }
+
+    if (!response) {
+      throw new HttpInternalServerError('Server response error');
+    }
+
+    return response;
   }
 }

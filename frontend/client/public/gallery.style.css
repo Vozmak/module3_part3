@@ -37,6 +37,10 @@ body {
     margin: 10px;
 }
 
+.Images .img:hover {
+    cursor: pointer;
+}
+
 .ImageInfo {
     display: flex;
     text-align: center;
@@ -46,4 +50,8 @@ body {
 #total_pages {
     padding: 0;
     margin: 0;
+}
+
+#imagesIDs {
+    height: 50px;
 }

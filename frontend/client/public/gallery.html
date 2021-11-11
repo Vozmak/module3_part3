@@ -27,6 +27,16 @@
         <p id="total_pages">Total Pages: </p>
       </fieldset>
     </form>
+    <form class="postImage" method="post">
+      <fieldset>
+        <legend>Upload image to unsplash (click on image for add in  list)</legend>
+        <label>
+          Image ID list:
+          <textarea id="imagesIDs" disabled></textarea>
+        </label><br>
+        <input type="submit" value="Загрузить">
+      </fieldset>
+    </form>
   </div>
   <br>
   <div class="galleryImages">
@@ -37,5 +47,6 @@
 <script type="module" src="../../build/src/gallery/displayGallery/listGallery.js"></script>
 <script type="module" src="../../build/src/gallery/displayGallery/addImage.js"></script>
 <script type="module" src="../../build/src/gallery/displayGallery/getImgsApi.js"></script>
+<script type="module" src="../../build/src/gallery/displayGallery/postImagesApi.js"></script>
 </body>
 </html>

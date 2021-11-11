@@ -15,7 +15,7 @@ imgForm.addEventListener('submit', async (event: Event) => {
     const image: File = imgInput.files[0];
     console.log(image);
 
-    const preSignedURL: Response = await fetch(`${lambdaUrl}gallery/upload`, {
+    const preSignedURL: Response = await fetch(`${lambdaUrl}/gallery/upload`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${localStorage.token}`,
