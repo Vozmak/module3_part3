@@ -28,7 +28,12 @@ export class UpdateImagesCurlService {
         })
         .toBuffer();
 
-      await this.S3.put(key, subClip, getEnv('SUB_CLIP_IMAGES_BUCKET_NAME'), `images/${metadata.format}`);
+      await this.S3.put(
+        `${userEmail}/_SC${imageName}`,
+        subClip,
+        getEnv('SUB_CLIP_IMAGES_BUCKET_NAME'),
+        `images/${metadata.format}`
+      );
 
       const updateValue: UploadValues = {
         Status: 'CLOSED',
