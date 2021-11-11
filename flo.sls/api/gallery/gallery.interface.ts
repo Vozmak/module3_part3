@@ -15,7 +15,8 @@ export interface Image {
 }
 
 export interface UploadValues {
-  Path: string;
+  Path?: string;
   Status: 'OPEN' | 'CLOSED';
   Metadata?: string;
+  SubClip: true | false;
 }

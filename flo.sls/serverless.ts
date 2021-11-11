@@ -5,6 +5,7 @@ import { authConfig } from './config/serverless/parts/auth/gallery-auth';
 import { TableConfig } from './config/serverless/tables/users.table';
 import { UnsplashApiConfig } from './config/serverless/parts/unsplash-api/unsplash-api';
 import { updateImagesConfig } from './config/serverless/parts/gallery/update-images';
+import { SubClipBucketConfig } from './config/serverless/buckets/sub-clip-images.bucket';
 import { joinParts } from './config/serverless/utils';
 
 const masterConfig: AWS = {
@@ -44,6 +45,9 @@ const masterConfig: AWS = {
       webpackConfig: 'webpack.config.js',
       includeModules: {
         forceExclude: ['aws-sdk'],
+      },
+      packagerOptions: {
+        scripts: ['npm rebuild --arch=x64 --platform=linux sharp'],
       },
       concurrency: 5,
       serializedCompile: true,
@@ -126,4 +130,5 @@ module.exports = joinParts(masterConfig, [
   BucketConfig,
   UnsplashApiConfig,
   updateImagesConfig,
+  SubClipBucketConfig,
 ]);

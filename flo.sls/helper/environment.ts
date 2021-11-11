@@ -20,6 +20,7 @@ const envs: Record<string, string | undefined> = {
   ACCESSKEYID: process.env.ACCESSKEYID,
   SECRETACCESSKEY: process.env.SECRETACCESSKEY,
   UNSPLASH_CLIENT_ID: process.env.UNSPLASH_CLIENT_ID,
+  SUB_CLIP_IMAGES_BUCKET_NAME: process.env.SUB_CLIP_IMAGES_BUCKET_NAME,
 };
 
 export type Stage = 'local' | 'dev' | 'test' | 'prod';

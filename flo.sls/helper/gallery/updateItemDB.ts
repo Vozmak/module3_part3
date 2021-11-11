@@ -10,9 +10,10 @@ import { DynamoClient } from '@services/dynamoDBClient';
 import * as crypto from 'crypto';
 
 export interface UploadValues {
-  Path: string;
+  Path?: string;
   Status: 'OPEN' | 'CLOSED';
   Metadata?: string;
+  SubClip: true | false;
 }
 
 export async function updateItemDB(
@@ -42,7 +43,7 @@ export async function updateItemDB(
             S: values.Metadata || JSON.stringify({ message: 'Metadata not found' }),
           },
           ':sccreated': {
-            BOOL: false,
+            BOOL: values.SubClip,
           },
         },
         Key: {
@@ -91,7 +92,7 @@ export async function updateItemDB(
             S: imageName,
           },
           URL: {
-            S: values.Path,
+            S: values.Path!,
           },
           Status: {
             S: values.Status,

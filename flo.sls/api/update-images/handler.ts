@@ -1,3 +1,4 @@
+import { UpdateImagesCurlService } from '@services/update-images-curl.service';
 import { S3Handler } from 'aws-lambda';
 import { log } from '@helper/logger';
 import { errorHandler } from '@helper/rest-api/error-handler';
@@ -11,7 +12,9 @@ export const updateImages: S3Handler = async (event) => {
 
     const uploadInfo = event.Records[0];
 
-    return await manager.updateImages(uploadInfo);
+    const updateImagesCurlService = new UpdateImagesCurlService();
+
+    return await manager.updateImages(uploadInfo, updateImagesCurlService);
   } catch (error) {
     return errorHandler(error);
   }

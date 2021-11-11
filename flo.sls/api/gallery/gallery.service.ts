@@ -60,6 +60,7 @@ export class GalleryService {
       const putValues: UploadValues = {
         Path: imagePutUrl.split('?', 1)[0],
         Status: 'OPEN',
+        SubClip: false,
       };
       await updateItemDB(userUploadEmail, imageName, putValues);
     } catch (e) {
