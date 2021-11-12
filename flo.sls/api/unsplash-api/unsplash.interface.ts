@@ -8,10 +8,17 @@ export interface ImagesList {
 }
 
 export interface ImageItem {
+  email: string;
+  receiptHandle: string;
+  receiveCount: string;
   url: string;
   id: string;
 }
 
 export interface UploadBodyImages {
-  urls: Array<ImageItem>;
+  urls: {
+    url: string;
+    id: string;
+    email?: string;
+  }[];
 }

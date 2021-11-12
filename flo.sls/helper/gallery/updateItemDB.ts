@@ -28,6 +28,7 @@ export async function updateItemDB(
     const imgHash = crypto.createHash('sha1').update(imageName).digest('hex');
 
     if (exists) {
+      console.log(6);
       const paramsUser: UpdateItemCommandInput = {
         TableName: getEnv('USERS_TABLE_NAME'),
         ExpressionAttributeNames: {
@@ -56,6 +57,7 @@ export async function updateItemDB(
         },
         UpdateExpression: `SET #S = :status, #M = :metadata, #SC = :sccreated`,
       };
+      console.log(7);
       const updateCommand = new UpdateItemCommand(paramsUser);
       await DynamoClient.send(updateCommand);
       // paramsAll = {
@@ -102,6 +104,7 @@ export async function updateItemDB(
       const PutCommand = new PutItemCommand(paramsUser);
       await DynamoClient.send(PutCommand);
     }
+    console.log(8);
   } catch (err) {
     throw new HttpInternalServerError(err.message);
   }

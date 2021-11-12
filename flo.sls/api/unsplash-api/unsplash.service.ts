@@ -24,23 +24,13 @@ export class UnsplashService {
     return imagesList;
   }
 
-  async uploadUnsplashImages(
-    urlsList: Array<ImageItem>,
-    email: string,
-    unsplashCurlService: UnsplashCurlService
-  ): Promise<string> {
-    let response: string;
-
+  async uploadUnsplashImages(urlsList: Array<ImageItem>, unsplashCurlService: UnsplashCurlService): Promise<void> {
     try {
-      response = await unsplashCurlService.postImages(email, urlsList);
+      await unsplashCurlService.postImages(urlsList);
     } catch (e) {
       throw new HttpInternalServerError(e.message);
     }
 
-    if (!response) {
-      throw new HttpInternalServerError('Server response error');
-    }
-
-    return response;
+    return;
   }
 }

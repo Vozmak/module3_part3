@@ -16,30 +16,32 @@ export class UpdateImagesCurlService {
   private readonly S3 = new S3Service();
 
   async createSubClip(imageObject: GetObjectOutput, key: string): Promise<void> {
+    console.log(1);
     const [userEmail, imageName] = key.split('/', 2);
     try {
       const image = sharp(imageObject.Body);
       const metadata = await image.metadata();
       delete metadata.icc;
-
+      console.log(2);
       const subClip = await image
         .resize(512, 250, {
           fit: 'cover',
         })
         .toBuffer();
-
+      console.log(3);
       await this.S3.put(
         `${userEmail}/_SC${imageName}`,
         subClip,
         getEnv('SUB_CLIP_IMAGES_BUCKET_NAME'),
         `images/${metadata.format}`
       );
-
+      console.log(4);
       const updateValue: UploadValues = {
         Status: 'CLOSED',
         Metadata: JSON.stringify(metadata),
         SubClip: true,
       };
+      console.log(5);
       await updateItemDB(userEmail, imageName, updateValue, true);
     } catch (error) {
       throw new HttpInternalServerError(error.message);

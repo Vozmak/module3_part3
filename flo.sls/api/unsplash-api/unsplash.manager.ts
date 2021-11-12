@@ -24,19 +24,11 @@ export class UnsplashManager {
     return this.service.getImagesUnsplash(query, unsplashCurlService);
   }
 
-  uploadUnsplashImages(
-    urlsList: Array<ImageItem>,
-    email: string,
-    unsplashCurlService: UnsplashCurlService
-  ): Promise<string> {
+  uploadUnsplashImages(urlsList: Array<ImageItem>, unsplashCurlService: UnsplashCurlService): Promise<void> {
     if (!urlsList || urlsList.length === 0) {
       throw new HttpError(404, 'Not found', 'Not found images for upload');
     }
 
-    if (!email) {
-      throw new HttpBadRequestError('Email is required');
-    }
-
-    return this.service.uploadUnsplashImages(urlsList, email, unsplashCurlService);
+    return this.service.uploadUnsplashImages(urlsList, unsplashCurlService);
   }
 }

@@ -4,7 +4,8 @@ export const updateImagesConfig: AWSPartitial = {
   functions: {
     updateImages: {
       handler: 'api/update-images/handler.updateImages',
-      memorySize: 128,
+      memorySize: 256,
+      timeout: 10,
       events: [
         {
           s3: {

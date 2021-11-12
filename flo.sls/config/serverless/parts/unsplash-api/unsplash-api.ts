@@ -39,6 +39,17 @@ export const UnsplashApiConfig: AWSPartitial = {
       memorySize: 128,
       events: [
         {
+          sqs: {
+            arn: 'arn:aws:sqs:us-east-1:367315594041:${file(env.yml):${self:provider.stage}.IMAGES_QUEUE_NAME',
+          },
+        },
+      ],
+    },
+    sendMessageSQS: {
+      handler: 'api/unsplash-api/handler.sendMessageSQS',
+      memorySize: 128,
+      events: [
+        {
           http: {
             path: '/gallery/unsplash',
             method: 'post',

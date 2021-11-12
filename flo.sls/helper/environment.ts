@@ -21,6 +21,8 @@ const envs: Record<string, string | undefined> = {
   SECRETACCESSKEY: process.env.SECRETACCESSKEY,
   UNSPLASH_CLIENT_ID: process.env.UNSPLASH_CLIENT_ID,
   SUB_CLIP_IMAGES_BUCKET_NAME: process.env.SUB_CLIP_IMAGES_BUCKET_NAME,
+  IMAGES_QUEUE_NAME: process.env.IMAGES_QUEUE_NAME,
+  IMAGES_QUEUE_URL: process.env.IMAGES_QUEUE_URL,
 };
 
 export type Stage = 'local' | 'dev' | 'test' | 'prod';
