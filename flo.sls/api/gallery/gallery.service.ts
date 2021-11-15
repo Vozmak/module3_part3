@@ -11,7 +11,7 @@ import { HttpError } from '@errors/http/http-error';
 import { getEnv } from '@helper/environment';
 import { DynamoClient } from '@services/dynamoDBClient';
 import { S3Service } from '@services/s3.service';
-import { UpdateDynamodbItemService } from '@services/update-dynamodb-item.service';
+import { UpdateImagesService } from '@services/update-images.service';
 import { Gallery, PreSignerUrlResponse, UploadValues } from './gallery.interface';
 
 export class GalleryService {
@@ -50,7 +50,7 @@ export class GalleryService {
   }
 
   async getPreSignedPutUrl(imageName: string, userUploadEmail: string): Promise<PreSignerUrlResponse> {
-    const updateDynamodbItemService = new UpdateDynamodbItemService();
+    const updateDynamodbItemService = new UpdateImagesService();
     let imagePutUrl: string;
     try {
       const S3 = new S3Service();

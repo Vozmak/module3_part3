@@ -16,7 +16,7 @@ export interface UploadValues {
   SubClip: true | false;
 }
 
-export class UpdateDynamodbItemService {
+export class UpdateImagesService {
   async updateDynamodbItem(userEmail: string, imageName: string, values: UploadValues, exists = false): Promise<void> {
     // let paramsAll: UpdateItemCommandInput | undefined;
 
