@@ -1,3 +1,4 @@
+import { GetAtt } from '../../cf-intristic-fn';
 import { AWSPartitial } from '../../types';
 
 export const UnsplashApiConfig: AWSPartitial = {
@@ -40,7 +41,7 @@ export const UnsplashApiConfig: AWSPartitial = {
       events: [
         {
           sqs: {
-            arn: 'arn:aws:sqs:us-east-1:367315594041:${self:service}-${self:provider.stage}-images-sqs',
+            arn: GetAtt('imagesSQS.Arn'),
           },
         },
       ],
