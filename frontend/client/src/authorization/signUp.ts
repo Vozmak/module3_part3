@@ -27,7 +27,7 @@ signUpButton.addEventListener('click', async event => {
 
 
 async function signUp(user: User) {
-    const response: Response = await fetch(`${lambdaUrl}signup`, {
+    const response: Response = await fetch(`${lambdaUrl}/signup`, {
         method: "POST",
         headers: {
             "Content-type": 'application/json'

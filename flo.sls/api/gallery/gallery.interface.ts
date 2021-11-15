@@ -10,17 +10,13 @@ export interface Query {
   filter?: string;
 }
 
-export interface ResponseSuccess {
-  statusCode: number;
-  body: string;
-}
-
 export interface Image {
   imageName: string;
 }
 
 export interface UploadValues {
-  Path: string;
+  Path?: string;
   Status: 'OPEN' | 'CLOSED';
   Metadata?: string;
+  SubClip: true | false;
 }

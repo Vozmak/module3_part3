@@ -1,18 +1,25 @@
 import { AWSPartitial } from '../../types';
 
-export const galleryConfig: AWSPartitial = {
+export const UnsplashApiConfig: AWSPartitial = {
   functions: {
-    getGallery: {
-      handler: 'api/gallery/handler.getGallery',
+    getImagesUnsplash: {
+      handler: 'api/unsplash-api/handler.getImagesUnsplash',
       memorySize: 128,
-      timeout: 10,
       events: [
         {
           http: {
-            path: '/gallery',
+            path: '/gallery/unsplash',
             method: 'get',
             integration: 'lambda',
             cors: true,
+            request: {
+              method: 'GET',
+              parameters: {
+                querystrings: {
+                  query: true,
+                },
+              },
+            },
             response: {
               headers: {
                 'Access-Control-Allow-Origin': "'*'",
@@ -27,14 +34,25 @@ export const galleryConfig: AWSPartitial = {
         },
       ],
     },
-    getPreSignedUrl: {
-      handler: 'api/gallery/handler.getPreSignedUrl',
+    uploadUnsplashImages: {
+      handler: 'api/unsplash-api/handler.uploadUnsplashImages',
+      memorySize: 128,
+      events: [
+        {
+          sqs: {
+            arn: 'arn:aws:sqs:us-east-1:367315594041:${file(env.yml):${self:provider.stage}.IMAGES_QUEUE_NAME',
+          },
+        },
+      ],
+    },
+    sendMessageSQS: {
+      handler: 'api/unsplash-api/handler.sendMessageSQS',
       memorySize: 128,
       events: [
         {
           http: {
-            path: '/gallery/upload',
-            method: 'POST',
+            path: '/gallery/unsplash',
+            method: 'post',
             integration: 'lambda',
             cors: true,
             response: {
@@ -46,9 +64,6 @@ export const galleryConfig: AWSPartitial = {
             },
             authorizer: {
               name: 'GalleryAuthorizerRestApi',
-              // identitySource: '${method.request.header.Authorization.slice(7)}',
-              // claims: ['$context.authorizer.claims.user'],
-              // scopes: ['user.email'],
             },
           },
         },

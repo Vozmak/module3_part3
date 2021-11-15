@@ -1,4 +1,57 @@
 img {
     height: 300px;
+}
+
+#img {
     margin: 10px;
+}
+
+form {
+    text-align: start;
+    display: inline-block;
+    width: 300px;
+}
+
+body {
+    color: rgba(255, 255, 255, 0.83);
+    background-color: #363636;
+}
+
+.page {
+    text-align: center;
+}
+
+.galleryImages .Images * {
+    padding: 0;
+    margin: 0;
+}
+
+.Images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.Images .img {
+    margin: 10px;
+}
+
+.Images .img:hover {
+    cursor: pointer;
+}
+
+.ImageInfo {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#total_pages {
+    padding: 0;
+    margin: 0;
+}
+
+#imagesIDs {
+    height: 50px;
 }

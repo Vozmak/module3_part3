@@ -34,14 +34,14 @@ form.addEventListener("submit", async event => {
 
   if (!localStorage.token) {
     localStorage.setItem("token", token);
-    localStorage.setItem("timestamp", `${Date.now() + 6e5}`);
+    localStorage.setItem("timestamp", `${Date.now() + 6e10/*6e5*/}`);
 
     window.location.href = `gallery.html?page=${localStorage.page || 1}`;
   }
 });
 
 async function authorizationUser(user: User): Promise<ErrorMsg | Token>  {
-  let response: Response = await fetch(`${lambdaUrl}login`, {
+  let response: Response = await fetch(`${lambdaUrl}/login`, {
     method: "POST",
     headers: {
       "Content-type": "application/json"

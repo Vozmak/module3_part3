@@ -38,14 +38,14 @@ next.onclick = function() {
 };
 
 async function displayImgList(): Promise<void> {
-  const gallery = document.querySelector(".gallery") as HTMLBodyElement
+  const imagesBlock = document.querySelector(".Images") as HTMLBodyElement
 
   const searchParams = new URL(window.location.href).searchParams;
   const page: number | string = getPage();
   const limit: string = searchParams.get('limit') || localStorage.limit || '0';
   const filter: string = searchParams.get('filter') || 'all';
 
-  const imgList: Response = await fetch(`${lambdaUrl}gallery?page=${page}&limit=${limit}&filter=${filter}`, {
+  const imgList: Response = await fetch(`${lambdaUrl}/gallery?page=${page}&limit=${limit}&filter=${filter}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.token}`
@@ -68,8 +68,9 @@ async function displayImgList(): Promise<void> {
   const jsonImgList = await imgList.json();
   for (let img of jsonImgList.objects) {
     let newImg = document.createElement("img") as HTMLImageElement;
+    newImg.id = 'img'
     newImg.src = img;
-    gallery.insertAdjacentElement("beforeend", newImg);
+    imagesBlock.insertAdjacentElement("beforeend", newImg);
   }
 
   const div = document.querySelector(".page") as HTMLBodyElement;
