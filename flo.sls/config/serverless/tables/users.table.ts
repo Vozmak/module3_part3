@@ -23,7 +23,7 @@ export const TableConfig: AWSPartitial = {
               'dynamodb:CreateTable',
               'dynamodb:UpdateTable',
             ],
-            Resource: ['arn:aws:dynamodb:*:*:table/${file(env.yml):${self:provider.stage}.USERS_TABLE_NAME}'],
+            Resource: ['arn:aws:dynamodb:*:*:table/${self:custom.tablesNames.UsersTable.${self:provider.stage}}'],
           },
         ],
       },

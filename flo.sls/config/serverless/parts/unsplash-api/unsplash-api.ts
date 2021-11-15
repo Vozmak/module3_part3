@@ -40,7 +40,7 @@ export const UnsplashApiConfig: AWSPartitial = {
       events: [
         {
           sqs: {
-            arn: 'arn:aws:sqs:us-east-1:367315594041:${file(env.yml):${self:provider.stage}.IMAGES_QUEUE_NAME',
+            arn: 'arn:aws:sqs:us-east-1:367315594041:${self:service}-${self:provider.stage}-images-sqs',
           },
         },
       ],

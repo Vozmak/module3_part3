@@ -19,7 +19,7 @@ interface ImageItem {
   id: string;
 }
 
-export class UnsplashCurlService {
+export class UnsplashApiService {
   private readonly urlAPI = 'https://api.unsplash.com';
   private readonly queryEndpoint = 'search/photos';
   private readonly Client_ID = `Client-ID ${getEnv('UNSPLASH_CLIENT_ID')}`;

@@ -3,16 +3,14 @@ import { HttpInternalServerError } from '@errors/http';
 import { HttpError } from '@errors/http/http-error';
 import { getEnv } from '@helper/environment';
 import { DynamoClient } from '@services/dynamoDBClient';
-import { S3Service } from '@services/s3.service';
-import { UpdateImagesCurlService } from '@services/update-images-curl.service';
+import { UploadSubClipService } from '@services/upload-subclip.service';
 import { GetObjectOutput } from 'aws-sdk/clients/s3';
 
 export class UploadImagesService {
-  async updateImages(
+  async uploadSubClipImage(
     key: string,
     imageObject: GetObjectOutput,
-    S3: S3Service,
-    updateImagesCurlService: UpdateImagesCurlService
+    uploadSubClipService: UploadSubClipService
   ): Promise<void> {
     try {
       const [userEmail, imageName] = key.split('/', 2);
@@ -50,7 +48,7 @@ export class UploadImagesService {
         throw new HttpError(404, 'Not Found', 'Image not found.');
       }
 
-      await updateImagesCurlService.createSubClip(imageObject, key);
+      await uploadSubClipService.uploadSubClipImage(imageObject, key);
     } catch (error) {
       throw new HttpInternalServerError(error.message);
     }

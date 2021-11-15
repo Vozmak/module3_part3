@@ -1,9 +1,9 @@
 import { AWSPartitial } from '../../types';
 
-export const updateImagesConfig: AWSPartitial = {
+export const UploadSubClipConfig: AWSPartitial = {
   functions: {
-    updateImages: {
-      handler: 'api/update-images/handler.updateImages',
+    uploadSubClip: {
+      handler: 'api/upload-subclip/handler.uploadSubClipImage',
       memorySize: 256,
       timeout: 10,
       events: [
