@@ -22,3 +22,7 @@ export interface UploadBodyImages {
     email?: string;
   }[];
 }
+
+export interface SuccessMessageResponse {
+  message: string;
+}

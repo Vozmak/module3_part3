@@ -21,8 +21,8 @@ export const BucketConfig: AWSPartitial = {
               's3:PutObjectAcl',
             ],
             Resource: [
-              'arn:aws:s3:::${file(env.yml):${self:provider.stage}.IMAGES_BUCKET_NAME}',
-              'arn:aws:s3:::${file(env.yml):${self:provider.stage}.IMAGES_BUCKET_NAME}/*',
+              'arn:aws:s3:::${self:custom.bucketsNames.ImageBucket.${self:provider.stage}}',
+              'arn:aws:s3:::${self:custom.bucketsNames.ImageBucket.${self:provider.stage}}/*',
             ],
           },
         ],
@@ -36,7 +36,7 @@ export const BucketConfig: AWSPartitial = {
         DeletionPolicy: 'Retain',
         Properties: {
           AccessControl: 'PublicReadWrite',
-          BucketName: '${file(env.yml):${self:provider.stage}.IMAGES_BUCKET_NAME}',
+          BucketName: '${self:custom.bucketsNames.ImageBucket.${self:provider.stage}}',
           CorsConfiguration: {
             CorsRules: [
               {

@@ -1,14 +1,14 @@
 import { HttpInternalServerError } from '@errors/http';
 import { ObjectType } from '@interfaces/api-gateway-lambda.interface';
-import { UnsplashCurlService } from '@services/unsplash-curl.service';
+import { UnsplashApiService } from '@services/unsplash-api.service';
 import { ImageItem, ImagesList } from './unsplash.interface';
 
 export class UnsplashService {
-  async getImagesUnsplash(query: ObjectType, unsplashCurlService: UnsplashCurlService): Promise<ImagesList> {
+  async getImagesUnsplash(query: ObjectType, unsplashApiService: UnsplashApiService): Promise<ImagesList> {
     let imagesList: ImagesList;
     try {
       const { keyword, page } = query;
-      const { results, total_pages } = await unsplashCurlService.getImages(keyword, page);
+      const { results, total_pages } = await unsplashApiService.getImages(keyword, page);
       imagesList = {
         total_pages: total_pages,
         result: results.map((image) => ({
@@ -24,9 +24,9 @@ export class UnsplashService {
     return imagesList;
   }
 
-  async uploadUnsplashImages(urlsList: Array<ImageItem>, unsplashCurlService: UnsplashCurlService): Promise<void> {
+  async uploadUnsplashImages(urlsList: Array<ImageItem>, unsplashApiService: UnsplashApiService): Promise<void> {
     try {
-      await unsplashCurlService.postImages(urlsList);
+      await unsplashApiService.postImages(urlsList);
     } catch (e) {
       throw new HttpInternalServerError(e.message);
     }

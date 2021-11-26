@@ -20,3 +20,7 @@ export interface UploadValues {
   Metadata?: string;
   SubClip: true | false;
 }
+
+export interface PreSignerUrlResponse {
+  message: string;
+}

@@ -25,5 +25,10 @@ idsForm.addEventListener('submit', async (event) => {
     }),
   });
 
-  console.log(unsplashResponse.statusText);
+  if (unsplashResponse.status !== 200) {
+    return alert(unsplashResponse.statusText)
+  }
+
+  const message = await unsplashResponse.json()
+  alert(message.message);
 })

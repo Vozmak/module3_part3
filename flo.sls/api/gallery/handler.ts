@@ -1,5 +1,5 @@
 import { Handler } from 'aws-lambda/handler';
-import { Gallery, Image, Query } from './gallery.interface';
+import { Gallery, Image, PreSignerUrlResponse, Query } from './gallery.interface';
 import { log } from '@helper/logger';
 import { errorHandler } from '@helper/rest-api/error-handler';
 import { APIGatewayLambdaEvent } from '@interfaces/api-gateway-lambda.interface';
@@ -19,7 +19,7 @@ export const getGallery: Handler<APIGatewayLambdaEvent<null>, Gallery> = async (
   }
 };
 
-export const getPreSignedUrl: Handler<APIGatewayLambdaEvent<Image>, string> = async (event) => {
+export const getPreSignedUrl: Handler<APIGatewayLambdaEvent<Image>, PreSignerUrlResponse> = async (event) => {
   log(event);
 
   try {

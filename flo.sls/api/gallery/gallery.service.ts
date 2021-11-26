@@ -9,10 +9,10 @@ import {
 import { HttpBadRequestError, HttpInternalServerError } from '@errors/http';
 import { HttpError } from '@errors/http/http-error';
 import { getEnv } from '@helper/environment';
-import { updateItemDB } from '@helper/gallery/updateItemDB';
 import { DynamoClient } from '@services/dynamoDBClient';
 import { S3Service } from '@services/s3.service';
-import { Gallery, UploadValues } from './gallery.interface';
+import { UpdateImagesService } from '@services/update-images.service';
+import { Gallery, PreSignerUrlResponse, UploadValues } from './gallery.interface';
 
 export class GalleryService {
   async getImages(page: number, limit: number, filter: string): Promise<Gallery> {
@@ -49,7 +49,8 @@ export class GalleryService {
     };
   }
 
-  async getPreSignedPutUrl(imageName: string, userUploadEmail: string): Promise<string> {
+  async getPreSignedPutUrl(imageName: string, userUploadEmail: string): Promise<PreSignerUrlResponse> {
+    const updateDynamodbItemService = new UpdateImagesService();
     let imagePutUrl: string;
     try {
       const S3 = new S3Service();
@@ -62,7 +63,7 @@ export class GalleryService {
         Status: 'OPEN',
         SubClip: false,
       };
-      await updateItemDB(userUploadEmail, imageName, putValues);
+      await updateDynamodbItemService.updateDynamodbItem(userUploadEmail, imageName, putValues);
     } catch (e) {
       if (e instanceof HttpBadRequestError) {
         throw new HttpBadRequestError(e.message);
@@ -71,7 +72,7 @@ export class GalleryService {
       throw new HttpInternalServerError(e.message);
     }
 
-    return imagePutUrl;
+    return { message: imagePutUrl };
   }
 
   async getImagesFromDB(filter: string): Promise<ScanCommandOutput | QueryCommandOutput> {

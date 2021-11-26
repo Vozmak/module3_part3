@@ -30,7 +30,7 @@ imgForm.addEventListener('submit', async (event: Event) => {
 
     const imgPutURL = await preSignedURL.json();
 
-    const uploadImg: Response = await fetch(imgPutURL, {
+    const uploadImg: Response = await fetch(imgPutURL.message, {
         method: "PUT",
         headers: {
             "Content-Type": `${image.type}`

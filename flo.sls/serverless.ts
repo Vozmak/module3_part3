@@ -4,7 +4,7 @@ import { galleryConfig } from './config/serverless/parts/gallery/gallery';
 import { authConfig } from './config/serverless/parts/auth/gallery-auth';
 import { TableConfig } from './config/serverless/tables/users.table';
 import { UnsplashApiConfig } from './config/serverless/parts/unsplash-api/unsplash-api';
-import { updateImagesConfig } from './config/serverless/parts/gallery/update-images';
+import { UploadSubClipConfig } from './config/serverless/parts/gallery/upload-subclip';
 import { SubClipBucketConfig } from './config/serverless/buckets/sub-clip-images.bucket';
 import { SQSConfig } from './config/serverless/sqs/upload-images-sqs';
 import { joinParts } from './config/serverless/utils';
@@ -130,7 +130,7 @@ module.exports = joinParts(masterConfig, [
   TableConfig,
   BucketConfig,
   UnsplashApiConfig,
-  updateImagesConfig,
+  UploadSubClipConfig,
   SubClipBucketConfig,
   SQSConfig,
 ]);
